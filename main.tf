@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+/*
 provider "google" {
   #credentials = file(terraform.workspace)
 
@@ -14,11 +15,14 @@ provider "google" {
   region  = var.region
   zone    = var.zone
 }
+*/
 
 resource "google_compute_network" "vpc_network" {
-  name = "terraform-network"
+  name        = "fortilab-gcp-100-vpc"
+  description = "FortiLab VPC - GCP 100"
+  region      = var.region
 }
-
+/*
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
   machine_type = "f1-micro"
@@ -36,3 +40,4 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 }
+*/
