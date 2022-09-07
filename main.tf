@@ -18,7 +18,6 @@ provider "google" {
 resource "google_compute_network" "vpc_network" {
   name        = "fortilab-gcp-100-vpc"
   description = "FortiLab VPC - GCP 100"
-  region      = var.region
 }
 
 resource "google_compute_instance" "vm_instance" {
