@@ -1,10 +1,10 @@
 terraform {
-
   cloud {
     organization = "HenriqueFM96"
+    hostname = "app.terraform.io" # Optional; defaults to app.terraform.io
 
     workspaces {
-      name = " FortiLab-GCP-100"
+      name = "FortiLab-GCP-100"
     }
   }
 
