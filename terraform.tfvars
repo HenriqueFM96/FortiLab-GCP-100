@@ -1,2 +1,2 @@
 project          = "<PROJECT_ID>"
-#credentials_file = "<FILE>"
+credentials_file = credentials_file
