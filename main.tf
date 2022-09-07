@@ -7,7 +7,6 @@ terraform {
   }
 }
 
-
 provider "google" {
   #credentials = file(terraform.workspace)
 
@@ -15,7 +14,6 @@ provider "google" {
   region  = var.region
   zone    = var.zone
 }
-
 
 resource "google_compute_network" "vpc_network" {
   name        = "fortilab-gcp-100-vpc"
