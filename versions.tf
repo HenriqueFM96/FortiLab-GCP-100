@@ -1,12 +1,14 @@
+# Using multiple workspaces:
 terraform {
-
-  cloud {
+  backend "remote" {
+    hostname = "app.terraform.io"
     organization = "HenriqueFM96"
 
     workspaces {
-      name = " FortiLab-GCP-100"
+      prefix = "FortiLab-GCP-100"
     }
   }
+
 
   #required_providers {
   #  google = {
