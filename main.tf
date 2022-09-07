@@ -18,21 +18,26 @@ provider "google" {
 resource "google_compute_network" "vpc_network" {
   name        = "fortilab-gcp-100-vpc"
   description = "FortiLab VPC - GCP 100"
+  region  = var.region
 }
 
-resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
+resource "google_compute_instance" "custom_hostname_instance" {
+  name         = "custom-hostname-instance-name"
   machine_type = "f1-micro"
-  tags         = ["web", "dev"]
+  zone = var.zone
+
+  # Set a custom hostname below 
+  hostname = "gcp100.fortilab.com"
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-9"
+      image = "debian-cloud/debian-11"
     }
   }
-
+  
   network_interface {
-    network = google_compute_network.vpc_network.name
+    # A default network is created for all GCP projects
+    network = "default"
     access_config {
     }
   }
