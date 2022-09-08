@@ -20,6 +20,22 @@ resource "google_compute_network" "vpc_network" {
   description = "FortiLab VPC - GCP 100"
 }
 
+resource "google_compute_firewall" "default" {
+  name    = "fortilab-firewall-rules"
+  network = google_compute_network.default.name
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "80", "443"]
+  }
+
+  source_tags = ["application"]
+}
+
 resource "google_compute_instance" "vm_instance" {
   name         = "gcp100-js-fortilab"
   machine_type = "f1-micro"
