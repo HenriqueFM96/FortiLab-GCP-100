@@ -30,6 +30,16 @@ resource "google_compute_firewall" "default" {
   target_tags = ["jumpserver"]
 }
 
+resource "google_compute_firewall" "rdp-js" {
+  name        = "fortilab-rdp-js"
+  network     = "fortilab-gcp-100-vpc"
+  description = "Creates firewall rule targeting tagged instances"
+  allow {
+    protocol = "tcp"
+    ports    = ["3389"]
+  }
+}
+
 resource "google_compute_instance" "vm_instance" {
   name         = "gcp100-js-fortilab"
   machine_type = "e2-standard-4"
