@@ -13,13 +13,13 @@ provider "google" {
   zone    = var.zone
 }
 
-resource "google_compute_network" "vpc_network" {
-  name        = "fortilab-gcp-100-vpc"
-  description = "FortiLab VPC - GCP 100"
-}
+#resource "google_compute_network" "vpc_network" {
+#  name        = "fortilab-gcp-100-vpc"
+#  description = "FortiLab VPC - GCP 100"
+#}
 
 module "vpc" {
-    #source  = "terraform-google-modules/network/google"
+    source  = "terraform-google-modules/network/google"
     #version = "~> 4.0"
 
   network_name = "fortilab-gcp-100-vpc"
