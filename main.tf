@@ -43,6 +43,11 @@ resource "google_compute_instance" "vm_instance" {
       image = "ubuntu-os-pro-cloud/ubuntu-pro-2204-lts"
     }
   }
+  
+  metadata {
+    startup-script = "${module.startup-script-lib.content}"
+    startup-script-custom = "stdlib::info Hello World"
+  }
 
   network_interface {
     network = google_compute_network.vpc_network.name
