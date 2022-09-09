@@ -46,7 +46,14 @@ resource "google_compute_instance" "vm_instance" {
   
   metadata = {
     startup-script = <<-EOF
-    echo 'Hello World now we are getting closer' > /test.txt
+    sudo apt update
+    sudo apt install tasksel
+    sudo tasksel install ubuntu-desktop
+    sudo systemctl set-default graphical.target
+    sudo apt install xrdp
+    sudo systemctl enable xrdp
+
+    echo 'script finished' > ~/test.txt
     EOF
   }
 
