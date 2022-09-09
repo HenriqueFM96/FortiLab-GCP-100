@@ -60,7 +60,7 @@ resource "google_compute_instance" "vm_instance" {
     sudo apt upgrade -y
     sudo apt install slim
     sudo service slim start
-    sudo apt install vanilla-gnome-desktop vanilla-gnome-default-settings
+    sudo apt install ubuntu-mate-desktop
     sudo apt install xrdp -y
     sudo systemctl enable xrdp
     sudo reboot
