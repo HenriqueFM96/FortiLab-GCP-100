@@ -1,28 +1,3 @@
-module "vpc" {
-    source  = "terraform-google-modules/network/google"
-    #version = "~> 4.0"
-
-  project_id = var.project
-  network_name = "fortilab-gcp-100-vpc"
-  routing_mode = "GLOBAL"
-
-  subnets = [
-    {
-      subnet_name = "fortilab-100-subnet-01"
-      subnet_ip = "10.10.10.0/24"
-      subnet_region = var.region
-      description = "public subnet"
-    },
-    {
-      subnet_name = "fortilab-100-subnet-02"
-      subnet_ip = "10.10.20.0/24"
-      subnet_region = var.region
-      subnet_private_access = "true"
-      description = "private subnet"
-    }
-  ]
-}
-
 terraform {
   required_providers {
     google = {
@@ -41,6 +16,30 @@ provider "google" {
 resource "google_compute_network" "vpc_network" {
   name        = "fortilab-gcp-100-vpc"
   description = "FortiLab VPC - GCP 100"
+}
+
+module "vpc" {
+    #source  = "terraform-google-modules/network/google"
+    #version = "~> 4.0"
+
+  network_name = "fortilab-gcp-100-vpc"
+  routing_mode = "GLOBAL"
+
+  subnets = [
+    {
+      subnet_name = "fortilab-100-subnet-01"
+      subnet_ip = "10.10.10.0/24"
+      subnet_region = var.region
+      description = "public subnet"
+    },
+    {
+      subnet_name = "fortilab-100-subnet-02"
+      subnet_ip = "10.10.20.0/24"
+      subnet_region = var.region
+      subnet_private_access = "true"
+      description = "private subnet"
+    }
+  ]
 }
 
 resource "google_compute_firewall" "default" {
