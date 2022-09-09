@@ -20,7 +20,7 @@ resource "google_compute_network" "vpc_network" {
 
 resource "google_compute_firewall" "default" {
   name        = "fortilab-firewall-rules"
-  network     = "fortilab-gcp-100-vpc"
+  #network     = "fortilab-gcp-100-vpc"
   description = "Creates firewall rule targeting tagged instances"
   allow {
     protocol = "tcp"
@@ -46,7 +46,6 @@ resource "google_compute_instance" "vm_instance" {
 
   network_interface {
     network = google_compute_network.vpc_network.name
-    network_ip	= "10.10.10.10/24"
     subnetwork = "fortilab-100-subnet-01"
     access_config {
     }
