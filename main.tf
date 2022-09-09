@@ -24,7 +24,7 @@ resource "google_compute_firewall" "default" {
   description = "Creates firewall rule targeting tagged instances"
   allow {
     protocol = "tcp"
-    ports    = ["22", "80", "443"]
+    ports    = ["22", "80", "443", "3389"]
   }
   source_ranges = ["35.235.240.0/20"]
   target_tags = ["jumpserver"]
@@ -46,14 +46,16 @@ resource "google_compute_instance" "vm_instance" {
   
   metadata = {
     startup-script = <<-EOF
-    sudo apt update
-    sudo apt install tasksel
-    sudo tasksel install ubuntu-desktop
-    sudo systemctl set-default graphical.target
-    sudo apt install xrdp
+    sudo apt update -y
+    sudo apt upgrade -y
+    sudo apt install slim
+    sudo service slim start
+    sudo apt install vanilla-gnome-desktop vanilla-gnome-default-settings
+    sudo apt install xrdp -y
     sudo systemctl enable xrdp
+    sudo reboot
 
-    echo 'script finished' > ~/test.txt
+    echo 'script finished :)' > ~/test.txt
     EOF
   }
 
