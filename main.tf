@@ -57,7 +57,6 @@ resource "google_compute_instance" "vm_instance" {
   metadata = {
     startup-script = <<-EOF
     sudo apt update -y
-    sudo apt upgrade -y
     sudo apt install tasksel -y
     sleep 1
     sudo tasksel install ubuntu-desktop -y
