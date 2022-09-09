@@ -59,11 +59,15 @@ resource "google_compute_instance" "vm_instance" {
     sudo apt update -y
     sudo apt upgrade -y
     sudo apt install tasksel -y
-    sudo apt install ubuntu-mate-desktop -y
+    sleep 1
+    sudo tasksel install ubuntu-desktop -y
+    sleep 1
+    sudo systemctl set-default graphical.target
     sudo apt install xrdp -y
+    sleep 1
     sudo systemctl enable xrdp
-    sudo reboot
-
+    sleep 1
+    sudo shutdown -h now
     echo 'script finished :)' > ~/test.txt
     EOF
   }
