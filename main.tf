@@ -58,9 +58,8 @@ resource "google_compute_instance" "vm_instance" {
     startup-script = <<-EOF
     sudo apt update -y
     sudo apt upgrade -y
-    sudo apt install slim
-    sudo service slim start
-    sudo apt install ubuntu-mate-desktop
+    sudo apt install tasksel -y
+    sudo apt install ubuntu-mate-desktop -y
     sudo apt install xrdp -y
     sudo systemctl enable xrdp
     sudo reboot
