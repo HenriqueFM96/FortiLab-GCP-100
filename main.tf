@@ -26,7 +26,7 @@ resource "google_compute_firewall" "default" {
     protocol = "tcp"
     ports    = ["22", "80", "443"]
   }
-  source_ranges = "35.235.240.0/20"
+  source_ranges = ["35.235.240.0/20"]
   target_tags = ["jumpserver"]
 }
 
