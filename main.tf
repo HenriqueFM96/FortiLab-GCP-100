@@ -32,7 +32,7 @@ resource "google_compute_firewall" "default" {
 
 resource "google_compute_instance" "vm_instance" {
   name         = "gcp100-js-fortilab"
-  machine_type = "f1-micro"
+  machine_type = "e2-standard-4"
   tags         = ["jumpserver"]
   zone = var.zone
   # Set a custom hostname below 
@@ -40,7 +40,7 @@ resource "google_compute_instance" "vm_instance" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "ubuntu-os-pro-cloud/ubuntu-pro-2204-lts"
     }
   }
 
