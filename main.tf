@@ -20,6 +20,7 @@ provider "google" {
 
 module "vpc" {
     source  = "terraform-google-modules/network/google"
+    version = "3.5.0"
     #version = "~> 4.0"
 
   network_name = "fortilab-gcp-100-vpc"
