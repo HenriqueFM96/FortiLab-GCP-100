@@ -49,7 +49,6 @@ resource "google_compute_instance" "vm_instance" {
     echo 'Hello World now we are getting closer' > /test.txt
     EOF
   }
-  metadata_startup_script = "echo 'Hello World' > /test.txt"
 
   network_interface {
     network = google_compute_network.vpc_network.name
