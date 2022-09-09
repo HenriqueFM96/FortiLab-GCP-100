@@ -46,7 +46,7 @@ resource "google_compute_instance" "vm_instance" {
 
   network_interface {
     network = google_compute_network.vpc_network.name
-    subnetwork = "fortilab-100-subnet-01"
+    #subnetwork = "fortilab-100-subnet-01"
     access_config {
     }
   }
