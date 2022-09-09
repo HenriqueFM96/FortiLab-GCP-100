@@ -19,8 +19,8 @@ resource "google_compute_network" "vpc_network" {
 }
 
 module "vpc" {
-  source = "terraform-google-modules/network/google"
-  version = "~> 4.0'"
+    source  = "terraform-google-modules/network/google"
+    version = "~> 4.0"
 
   project_id = var.project
   network_name = "fortilab-gcp-100-vpc"
