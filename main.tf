@@ -50,14 +50,20 @@ resource "google_compute_instance" "vm_instance" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-os-pro-cloud/ubuntu-pro-2204-lts"
+      #image = "ubuntu-os-pro-cloud/ubuntu-pro-2204-lts"
+      #image = "ubuntu-os-pro-cloud/ubuntu-pro-2204-jammy-v20220901"
+      image = "ubuntu-os-pro-cloud/ubuntu-pro-2004-focal-v20210720"
     }
   }
   
   metadata = {
     startup-script = <<-EOF
     sudo apt update -y
-    
+    sudo apt install --assume-yes wget tasksel
+    wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
+    sudo apt-get install --assume-yes ./chrome-remote-desktop_current_amd64.deb
+    sudo tasksel install ubuntu-desktop
+    sudo bash -c "echo 'exec /etc/X11/Xsession /usr/bin/gnome-session' > /etc/chrome-remote-desktop-session"
     echo 'script finished :)' >> ~/test.txt
     sudo shutdown -h now
     EOF
