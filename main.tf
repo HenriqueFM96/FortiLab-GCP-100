@@ -57,13 +57,8 @@ resource "google_compute_instance" "vm_instance" {
   metadata = {
     startup-script = <<-EOF
     sudo apt update -y
-    sudo tasksel install lubuntu-core -y
-    sudo service lubuntu-core start
-    sudo apt install xrdp -y
-    sleep 1
-    sudo systemctl enable xrdp
-    sleep 1
-    echo 'script finished :)' > ~/test.txt
+    
+    echo 'script finished :)' >> ~/test.txt
     sudo shutdown -h now
     EOF
   }
