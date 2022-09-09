@@ -1,50 +1,3 @@
-/******************************************
-	VPC configuration
- *****************************************/
-module "vpc" {
-  source                                 = "./modules/vpc"
-  network_name                           = var.network_name
-  auto_create_subnetworks                = var.auto_create_subnetworks
-  routing_mode                           = var.routing_mode
-  project_id                             = var.project_id
-  description                            = var.description
-  shared_vpc_host                        = var.shared_vpc_host
-  delete_default_internet_gateway_routes = var.delete_default_internet_gateway_routes
-  mtu                                    = var.mtu
-}
-
-/******************************************
-	Subnet configuration
- *****************************************/
-module "subnets" {
-  source           = "./modules/subnets"
-  project_id       = var.project_id
-  network_name     = module.vpc.network_name
-  subnets          = var.subnets
-  secondary_ranges = var.secondary_ranges
-}
-
-terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "3.5.0"
-    }
-  }
-}
-
-provider "google" {
-  project = var.project
-  region  = var.region
-  zone    = var.zone
-}
-
-resource "google_compute_network" "vpc_network" {
-  name        = "fortilab-gcp-100-vpc"
-  description = "FortiLab VPC - GCP 100"
-}
-
-/*
 module "vpc" {
     source  = "terraform-google-modules/network/google"
     #version = "~> 4.0"
@@ -69,7 +22,26 @@ module "vpc" {
     }
   ]
 }
-*/
+
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "3.5.0"
+    }
+  }
+}
+
+provider "google" {
+  project = var.project
+  region  = var.region
+  zone    = var.zone
+}
+
+resource "google_compute_network" "vpc_network" {
+  name        = "fortilab-gcp-100-vpc"
+  description = "FortiLab VPC - GCP 100"
+}
 
 resource "google_compute_firewall" "default" {
   name        = "fortilab-firewall-rules"
