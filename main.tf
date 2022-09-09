@@ -22,7 +22,7 @@ resource "google_compute_firewall" "default" {
   name        = "fortilab-firewall-rules"
   network     = "fortilab-gcp-100-vpc"
   description = "Creates firewall rule targeting tagged instances"
-  source_ranges = "35.235.240.0/20"
+#  source_ranges = "35.235.240.0/20"
   allow {
     protocol = "tcp"
     ports    = ["22", "80", "443"]
@@ -37,8 +37,8 @@ resource "google_compute_instance" "vm_instance" {
   zone = var.zone
   # Set a custom hostname below 
   hostname = "gcp100-js.fortilab.com"
-  network_ip	= "10.10.10.10/24"
-  subnetwork = "fortilab-100-subnet-01"
+  #network_ip	= "10.10.10.10/24"
+  #subnetwork = "fortilab-100-subnet-01"
 
   boot_disk {
     initialize_params {
