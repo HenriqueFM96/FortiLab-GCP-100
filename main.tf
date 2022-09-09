@@ -36,7 +36,7 @@ resource "google_compute_firewall" "rdp-js" {
   description = "Creates firewall rule targeting tagged instances"
   allow {
     protocol = "tcp"
-    ports    = ["3389"]
+    ports    = ["443","3389"]
   }
 }
 
