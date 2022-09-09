@@ -52,7 +52,7 @@ resource "google_compute_instance" "vm_instance" {
     initialize_params {
       #image = "ubuntu-os-pro-cloud/ubuntu-pro-2204-lts"
       #image = "ubuntu-os-pro-cloud/ubuntu-pro-2204-jammy-v20220901"
-      image = "ubuntu-os-pro-cloud/ubuntu-pro-2004-focal-v20210720"
+      image = "ubuntu-os-pro-cloud/ubuntu-pro-2004-focal-v20220905"
     }
   }
   
