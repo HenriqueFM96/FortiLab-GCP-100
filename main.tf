@@ -57,23 +57,20 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 
-  /*  
   metadata = {
     startup-script = <<-EOF
     sudo apt update -y
+    sudo apt-get upgrade -y
     sudo apt install --assume-yes wget tasksel
     sudo apt install xrdp -y
     sleep 1
     sudo systemctl enable xrdp
     sleep 1
-    sudo tasksel install lubuntu-core
-    //sudo tasksel install ubuntu-desktop
-    sudo bash -c "echo 'exec /etc/X11/Xsession /usr/bin/gnome-session' > /etc/chrome-remote-desktop-session"
+    sudo tasksel install ubuntu-mate-desktop
     echo 'script finished :)' >> ~/test.txt
     sudo shutdown -h now
     EOF
   }
-*/
 
   network_interface {
     network = google_compute_network.vpc_network.name
